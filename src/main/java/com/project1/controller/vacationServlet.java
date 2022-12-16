@@ -1,5 +1,7 @@
 package com.project1.controller;
 
+import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -17,7 +19,7 @@ import com.project1.DAO.VacationDAO;
 import com.project1.db.DBConnection;
 import com.project1.entity.Vacation;
 
-@MultipartConfig
+
 @WebServlet("/vacationServlet")
 public class vacationServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -33,9 +35,11 @@ public class vacationServlet extends HttpServlet {
 		String price = request.getParameter("price");
 		String validTill = request.getParameter("validTill");
 		String SoldOut = request.getParameter("soldout");
-		// String image = request.getParameter("image");
+//		String image = request.getParameter("image");
 
-		Part file = request.getPart("image");
+
+
+		Part file = request.getPart("student");
 		String imageFileName = file.getSubmittedFileName();
 		System.out.println("select imageFile name" + imageFileName);
 
@@ -50,7 +54,7 @@ public class vacationServlet extends HttpServlet {
 			is.read(data);
 			fos.write(data);
 			fos.close();
-			
+
 
 		} catch (Exception e) {
 			e.printStackTrace();

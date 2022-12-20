@@ -1,7 +1,6 @@
 package com.project1.DAO;
 
 import java.io.FileInputStream;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -9,8 +8,6 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-
-import com.project1.entity.Cart;
 import com.project1.entity.Vacation;
 
 public class VacationDAO {
@@ -142,32 +139,6 @@ public class VacationDAO {
 		return vacations;
 
 	}
-	
-	public int getTotalCartPrice(ArrayList<Cart> shoppingCart) {
-		
-		int sum = 0;
-		try {
-			if(shoppingCart.size()>0) {
-				for (Cart item : shoppingCart) {
-					String sql = "select price from vacation where id =?";
-					PreparedStatement pst  = this.con.prepareStatement(sql);
-					pst.setInt(1, item.getVid());
-					ResultSet rs  = pst.executeQuery();
-					
-					while (rs.next()) {
-						sum+=rs.getInt("price");
-					}
-					
-				}
-			}
-					
-		}catch (Exception e) {
-			e.printStackTrace();
-		}
-		return sum;
-		
-	}
 
-	
 
 }

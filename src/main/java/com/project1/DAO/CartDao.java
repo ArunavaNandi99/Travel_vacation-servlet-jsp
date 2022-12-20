@@ -8,7 +8,6 @@ import java.util.List;
 
 import com.project1.entity.Cart;
 
-
 public class CartDao {
 
 	private Connection con;
@@ -22,7 +21,7 @@ public class CartDao {
 		boolean f = false;
 
 		try {
-			String sql = "insert into cart(uid,vid,hname,description,type,city,price,totalPrice) values(?,?,?,?,?,?,?,?)";
+			String sql = "insert into cart(uid,vid,hname,description,type,city,price) values(?,?,?,?,?,?,?)";
 			PreparedStatement ps = con.prepareStatement(sql);
 			ps.setInt(1, c.getUid());
 			ps.setInt(2, c.getVid());
@@ -31,11 +30,10 @@ public class CartDao {
 			ps.setString(5, c.getType());
 			ps.setString(6, c.getCity());
 			ps.setString(7, c.getPrice());
-			ps.setInt(8, c.getTotalPrice());
 
 			int i = ps.executeUpdate();
 
-			if (i == 1) {
+			if (i >= 1) {
 				f = true;
 			}
 
@@ -47,41 +45,74 @@ public class CartDao {
 
 	}
 
-	public List<Cart>  getVacationByUser(int userId) {
-		List<Cart> list=  new ArrayList<Cart>();
-		Cart c = null;
-		int totalPrice = 0;
-		
-		
-		try { 
-			
+	public List<Cart> getVacationByUser(int userId) {
+
+		List<Cart> list = new ArrayList<Cart>();
+		Cart c;
+
+		try {
+
 			String sql = "select * from cart where uid=?";
-			PreparedStatement ps= con.prepareStatement(sql);
+			PreparedStatement ps = con.prepareStatement(sql);
 			ps.setInt(1, userId);
-			
-			ResultSet rs  = ps.executeQuery();
+
+			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {
 				c = new Cart();
-				c.setCid(rs.getInt("cid"));				
+				c.setCid(rs.getInt("cid"));
 				c.setHname(rs.getString("hname"));
 				c.setDescription(rs.getString("description"));
-				c.setCity(rs.getString("city"));;
+				c.setCity(rs.getString("city"));
 				c.setType(rs.getString("type"));
 				c.setPrice(rs.getString("price"));
-				
-				totalPrice = totalPrice+rs.getInt("totalPrice");
-				c.setTotalPrice(totalPrice);
-				
-				
-				
+
 				list.add(c);
 			}
-			
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
 		return list;
+
+	}
+
+	public void removeItem(Cart cart) {
+
+		try {
+			String sql = "DELETE FROM cart WHERE cid=?";
+			PreparedStatement ps = con.prepareStatement(sql);
+			ps.setInt(1, cart.getCid());
+			ps.executeUpdate();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+	}
+
+	public int getTotalCartPrice(ArrayList<Cart> cartList) {
+
+		int sum = 0;
+		try {
+			if (cartList.size() > 0) {
+				for (Cart item : cartList) {
+					String sql = "select price from cart where cid =?";
+					PreparedStatement pst = con.prepareStatement(sql);
+					pst.setInt(1, item.getCid());
+					ResultSet rs = pst.executeQuery();
+
+					while (rs.next()) {
+						sum = sum + rs.getInt("price");
+					}
+
+				}
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return sum;
 
 	}
 

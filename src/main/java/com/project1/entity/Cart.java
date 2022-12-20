@@ -9,14 +9,14 @@ public class Cart {
 	private String type;
 	private String city;
 	private String price;
-	private int totalPrice;
+	
 
 	public Cart() {
 		super();
 	}
 
-	public Cart(int cid, int uid, int vid, String hname, String description, String type, String city, String price,
-			int totalPrice) {
+	public Cart(int cid, int uid, int vid, String hname, String description, String type, String city, String price
+			) {
 		super();
 		this.cid = cid;
 		this.uid = uid;
@@ -26,7 +26,7 @@ public class Cart {
 		this.type = type;
 		this.city = city;
 		this.price = price;
-		this.totalPrice = totalPrice;
+		
 	}
 
 	public int getCid() {
@@ -93,18 +93,12 @@ public class Cart {
 		this.price = price;
 	}
 
-	public int getTotalPrice() {
-		return totalPrice;
-	}
-
-	public void setTotalPrice(int totalPrice) {
-		this.totalPrice = totalPrice;
-	}
+	
 
 	@Override
 	public String toString() {
 		return "Cart [cid=" + cid + ", uid=" + uid + ", vid=" + vid + ", hname=" + hname + ", description="
-				+ description + ", type=" + type + ", city=" + city + ", price=" + price + ", totalPrice=" + totalPrice
+				+ description + ", type=" + type + ", city=" + city + ", price=" + price  
 				+ "]";
 	}
 

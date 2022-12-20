@@ -13,6 +13,8 @@ if (vac.isEmpty()) {
 	HttpSession session2 = request.getSession();
 	session2.setAttribute("not_found", "Not found!");
 	response.sendRedirect("/project1/error");
+	
+	response.setHeader("Cache-Control", "no-cache ,no-store,must-revalidate");
 }
 %>
 
@@ -71,9 +73,6 @@ User user2 = (User) session.getAttribute("userDetails");
 				<%
 				}
 				%>
-
-
-
 			</tr>
 		</c:forEach>
 

@@ -28,6 +28,8 @@
 					<%
 					session.removeAttribute("password_no_match");
 					}
+					
+					response.setHeader("Cache-Control", "no-cache ,no-store,must-revalidate");
 					%>
 
 					<!-- useralreadyexist -->

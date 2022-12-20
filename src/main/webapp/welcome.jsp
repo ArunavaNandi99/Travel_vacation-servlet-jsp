@@ -1,3 +1,5 @@
+<%@page import="com.project1.DAO.CartDao"%>
+<%@page import="com.project1.entity.*"%>
 <%@page import="com.project1.entity.Vacation"%>
 <%@page import=" com.project1.DAO.VacationDAO"%>
 <%@page import="com.project1.db.DBConnection"%>
@@ -10,6 +12,9 @@
 VacationDAO vacationDAO = new VacationDAO(DBConnection.getConnection());
 List<Vacation> vacations = vacationDAO.allVacation();
 request.setAttribute("vacationList", vacations);
+
+response.setHeader("Cache-Control", "no-cache ,no-store,must-revalidate");
+
 %>
 <!DOCTYPE html>
 <html>

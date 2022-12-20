@@ -1,6 +1,7 @@
 package com.project1.controller;
 
 import java.io.IOException;
+import java.io.Serial;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -17,6 +18,7 @@ import com.project1.entity.Vacation;
 
 @WebServlet("/locationServlet")
 public class locationServlet extends HttpServlet {
+	@Serial
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)

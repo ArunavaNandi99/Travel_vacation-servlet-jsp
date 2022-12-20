@@ -27,14 +27,22 @@ if (user2 == null) {
 	session.setAttribute("Login-error", "Please Login");
 
 }
- ArrayList<Cart> cart_list = (ArrayList<Cart>) session.getAttribute("cartList");
-if (cart_list != null) {
-	VacationDAO dao = new VacationDAO(DBConnection.getConnection());
-	Integer cartProduct1 = dao.getTotalCartPrice(cart_list);
-	Integer total = dao.getTotalCartPrice(cart_list);
-	request.setAttribute("total", total);
 
-} 
+CartDao dao = new CartDao(DBConnection.getConnection());
+List<Cart> cart = dao.getVacationByUser(user2.getId());
+if (cart != null) {
+	HttpSession session2 = request.getSession();
+	session2.setAttribute("cartList", cart);
+}
+%>
+<%
+ArrayList<Cart> cart_list = (ArrayList<Cart>) session.getAttribute("cartList");
+CartDao cDao = new CartDao(DBConnection.getConnection());
+Integer total =  cDao.getTotalCartPrice(cart_list);
+request.setAttribute("total", total);
+
+response.setHeader("Cache-Control", "no-cache ,no-store,must-revalidate");
+
 %>
 
 
@@ -52,7 +60,7 @@ if (cart_list != null) {
 	%>
 
 	<div class="d-flex py-3">
-		<h3>Total price :</h3>
+		<h3>Total price :$ ${total}</h3>
 		<a class="mx-3 btn btn-primary" href="#">Check Out</a>
 	</div>
 
@@ -70,35 +78,32 @@ if (cart_list != null) {
 			</tr>
 		</thead>
 		<tbody>
+
+
 			<%
-			CartDao dao = new CartDao(DBConnection.getConnection());
-			List<Cart> cart = dao.getVacationByUser(user2.getId());
-			int totalPrice = 0;
-			for(Cart c: cart){
-				totalPrice = c.getTotalPrice();
+			for (Cart c : cart) {
 			%>
 
 			<tr>
 
 				<td><%=c.getHname() %></td>
-				<td><%=c.getDescription() %></td>
-				<td><%= c.getCity() %></td>
-				<td><%=c.getType() %></td>
-				<td><%= c.getPrice() %></td>
-				<td><a href="remove_from_cart?id=<%= c.getCid() %>">Remove</a></td>
+				<td><%=c.getDescription()%></td>
+				<td><%=c.getCity()%></td>
+				<td><%=c.getType()%></td>
+				<td><%=c.getPrice()%></td>
+				<td><a href="removeFormCart?id=<%=c.getCid()%>">Remove</a></td>
 
 			</tr>
 			<%
 			}
 			%>
 
-			<tr>
-			<td><%= totalPrice %></td>
-			</tr>
+			
+
 		</tbody>
-		
-		
-		
+
+
+
 
 	</table>
 

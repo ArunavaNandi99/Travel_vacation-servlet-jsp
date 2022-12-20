@@ -1,6 +1,7 @@
 package com.project1.controller;
 
 import java.io.IOException;
+import java.io.Serial;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -15,6 +16,7 @@ import com.project1.entity.User;
 
 @WebServlet("/UserServlet")
 public class UserServlet extends HttpServlet {
+	@Serial
 	private static final long serialVersionUID = 1L;
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)

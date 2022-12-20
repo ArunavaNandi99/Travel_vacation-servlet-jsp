@@ -1,11 +1,8 @@
 package com.project1.controller;
 
-import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.nio.file.Path;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
@@ -22,12 +19,12 @@ import com.project1.entity.Vacation;
 
 
 @WebServlet("/vacationServlet")
-//@MultipartConfig(
-//				location ="H:\\Images",
-//				fileSizeThreshold =1024*1024, //1MB
-//				maxFileSize = 1024*1024*10, //10MB
-//				maxRequestSize = 1024*1024*10 //11MB
-//			)
+@MultipartConfig(
+				location ="H:\\Images",
+				fileSizeThreshold =1024*1024, //1MB
+				maxFileSize = 1024*1024*10, //10MB
+				maxRequestSize = 1024*1024*10 //11MB
+			)
 public class vacationServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -42,30 +39,29 @@ public class vacationServlet extends HttpServlet {
 		String price = request.getParameter("price");
 		String validTill = request.getParameter("validTill");
 		String SoldOut = request.getParameter("soldout");
-		String image = request.getParameter("image");
 
 
 
-//    	Part file = Part(request.getRealPath("image"));
-//		String imageFileName = file.getSubmittedFileName();
-//		System.out.println("select imageFile name" + imageFileName);
-//
-//		String uploadPath = "H:/SERVLET/project1/src/main/webapp/images/" + imageFileName;
-//		System.out.println(uploadPath);
-//
-//		try {
-//			FileOutputStream fos = new FileOutputStream(uploadPath);
-//			InputStream is = file.getInputStream();
-//
-//			byte[] data = new byte[is.available()];
-//			is.read(data);
-//			fos.write(data);
-//			fos.close();
-//
-//
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		}
+    	Part file = request.getPart("image");
+		String imageFileName = file.getSubmittedFileName();
+		System.out.println("select imageFile name" + imageFileName);
+
+		String uploadPath = "H:/SERVLET/project1/src/main/webapp/images/" + imageFileName;
+		System.out.println(uploadPath);
+
+		try {
+			FileOutputStream fos = new FileOutputStream(uploadPath);
+			InputStream is = file.getInputStream();
+
+			byte[] data = new byte[is.available()];
+			is.read(data);
+			fos.write(data);
+			fos.close();
+
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 
 		{
 
@@ -79,7 +75,7 @@ public class vacationServlet extends HttpServlet {
 			vacation.setPrice(price);
 			vacation.setValidTill(validTill);
 			vacation.setSoldout(SoldOut);
-			vacation.setImage(image);
+			vacation.setImage(imageFileName);
 
 			VacationDAO vacationDao = new VacationDAO(DBConnection.getConnection());
 			boolean f = vacationDao.addVacation(vacation);

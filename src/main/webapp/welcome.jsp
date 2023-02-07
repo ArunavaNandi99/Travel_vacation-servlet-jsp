@@ -13,7 +13,7 @@ VacationDAO vacationDAO = new VacationDAO(DBConnection.getConnection());
 List<Vacation> vacations = vacationDAO.allVacation();
 request.setAttribute("vacationList", vacations);
 
-response.setHeader("Cache-Control", "no-cache ,no-store,must-revalidate");
+response.setHeader("Cache-Control", "no-cache ,no-store, must-revalidate");
 
 %>
 <!DOCTYPE html>

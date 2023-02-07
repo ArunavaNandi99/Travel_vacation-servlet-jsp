@@ -62,7 +62,7 @@
 
 					<div class="card-body">
 						<form name="form" action="UserServlet" method="post"
-							onsubmit="return validate()">
+							onsubmit="return validate()" >
 							<div class="form-group text-center">
 								UserName<input type="text" name="username"><br />
 							</div>
@@ -76,7 +76,7 @@
 								Email<input type="email" name="email"><br />
 							</div>
 							<div class="form-group text-center">
-								Password<input type="password" name="password" id="password"><br />
+								Password<input type="password" name="password" id="password" ><br />
 							</div>
 							<div class="form-group text-center">
 								ConfirmPassword<input type="password" name="confirmpassword"

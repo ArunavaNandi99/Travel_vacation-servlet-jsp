@@ -67,12 +67,12 @@ if ((request.getSession(true).getAttribute("userDetails") != null)) {
 
 					<div class="card-body">
 
-						<form action="loginServlet" method="post">
+						<form action="loginServlet" method="post" >
 							<div class="form-group text-center">
 								UserName<input type="text" name="username">
 							</div>
 							<div class="form-group text-center">
-								Password<input type="password" name="password">
+								Password<input type="password" name="password" >
 							</div>
 							<div class="form-group text-center">
 								<input type="submit" value="Login">

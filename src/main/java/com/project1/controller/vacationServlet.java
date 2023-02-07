@@ -20,7 +20,7 @@ import com.project1.entity.Vacation;
 
 @WebServlet("/vacationServlet")
 @MultipartConfig(
-				location ="H:\\Images",
+				location ="G:\\Images",
 				fileSizeThreshold =1024*1024, //1MB
 				maxFileSize = 1024*1024*10, //10MB
 				maxRequestSize = 1024*1024*10 //11MB
@@ -39,29 +39,30 @@ public class vacationServlet extends HttpServlet {
 		String price = request.getParameter("price");
 		String validTill = request.getParameter("validTill");
 		String SoldOut = request.getParameter("soldout");
+		String image = request.getParameter("image");
 
 
 
-    	Part file = request.getPart("image");
-		String imageFileName = file.getSubmittedFileName();
-		System.out.println("select imageFile name" + imageFileName);
-
-		String uploadPath = "H:/SERVLET/project1/src/main/webapp/images/" + imageFileName;
-		System.out.println(uploadPath);
-
-		try {
-			FileOutputStream fos = new FileOutputStream(uploadPath);
-			InputStream is = file.getInputStream();
-
-			byte[] data = new byte[is.available()];
-			is.read(data);
-			fos.write(data);
-			fos.close();
-
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+//    	Part file = request.getPart("image");
+//		String imageFileName = file.getSubmittedFileName();
+//		System.out.println("select imageFile name" + imageFileName);
+//
+//		String uploadPath = "G:/OFFICE PROJECT/Travel_vacation-servlet-jsp/src/main/webapp/images/" + imageFileName;
+//		System.out.println(uploadPath);
+//
+//		try {
+//			FileOutputStream fos = new FileOutputStream(uploadPath);
+//			InputStream is = file.getInputStream();
+//
+//			byte[] data = new byte[is.available()];
+//			is.read(data);
+//			fos.write(data);
+//			fos.close();
+//
+//
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
 
 		{
 
@@ -75,7 +76,7 @@ public class vacationServlet extends HttpServlet {
 			vacation.setPrice(price);
 			vacation.setValidTill(validTill);
 			vacation.setSoldout(SoldOut);
-			vacation.setImage(imageFileName);
+			vacation.setImage(image);
 
 			VacationDAO vacationDao = new VacationDAO(DBConnection.getConnection());
 			boolean f = vacationDao.addVacation(vacation);

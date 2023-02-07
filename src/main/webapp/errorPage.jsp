@@ -11,6 +11,7 @@
 	<%@ include file="all_component/navbar.jsp"%>
 	<!-- city not found -->
 	<%
+	response.setHeader("Cache-Control", "no-cache ,no-store, must-revalidate");
 	String notFound = (String) session.getAttribute("not_found");
 
 	if (notFound != null) {

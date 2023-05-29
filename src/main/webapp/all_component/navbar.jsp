@@ -83,6 +83,10 @@
 										<td><%=user.getFname()%> <%=user.getLname()%></td>
 									</tr>
 									<tr>
+									<th>Phone Number</th>
+									<td><%= user.getPhoneNumber()%></td>
+									</tr>
+									<tr>
 										<th>Email</th>
 										<td><%=user.getEmail()%></td>
 									</tr>

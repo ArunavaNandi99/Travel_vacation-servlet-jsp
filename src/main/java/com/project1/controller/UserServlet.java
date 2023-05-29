@@ -22,49 +22,58 @@ public class UserServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		String username = request.getParameter("username").trim();
-		String fname = request.getParameter("fname");
-		String lname = request.getParameter("lname");
-		String email = request.getParameter("email");
-		String password = request.getParameter("password");
-		String confirmpassword = request.getParameter("confirmpassword");
+		try {
 
-		HttpSession session = request.getSession();
+			String username = request.getParameter("username").trim();
+			String fname = request.getParameter("fname");
+			String lname = request.getParameter("lname");
+			String phoneNumber = request.getParameter("phoneNumber");
+			String email = request.getParameter("email");
+			String password = request.getParameter("password");
+			String confirmpassword = request.getParameter("confirmpassword");
 
-		if ((!(username.equals(null) || username.equals("")) && !(fname.equals(null) || fname.equals(""))
-				&& (!(lname.equals(null) || lname.equals("")) && !(email.equals(null) || email.equals(""))
-						&& !(password.equals(null) || password.equals(""))
-						&& !(confirmpassword.equals(null) || confirmpassword.equals(""))))) {
+			HttpSession session = request.getSession();
 
-			if (password.equals(confirmpassword)) {
+			if ((!(username.equals(null) || username.equals("")) && !(fname.equals(null) || fname.equals(""))
+					&& (!(lname.equals(null) || lname.equals("")) && !(email.equals(null) || email.equals(""))
+							&& !(password.equals(null) || password.equals(""))
+							&& !(confirmpassword.equals(null) || confirmpassword.equals(""))))) {
 
-				User user = new User();
+				if (password.equals(confirmpassword)) {
 
-				user.setUsername(username);
-				user.setFname(fname);
-				user.setLname(lname);
-				user.setEmail(email);
-				user.setPassword(password);
+					Long phone = Long.parseLong(phoneNumber);
 
-				UserDAO dao = new UserDAO(DBConnection.getConnection());
-				boolean f = dao.registerUser(user);
+					User user = new User();
 
-				if (f) {
-					session.setAttribute("register", "User hasbeen Register");
-					response.sendRedirect("/project1/login");
+					user.setUsername(username);
+					user.setFname(fname);
+					user.setLname(lname);
+					user.setPhoneNumber(phone);
+					user.setEmail(email);
+					user.setPassword(password);
+
+					UserDAO dao = new UserDAO(DBConnection.getConnection());
+					boolean f = dao.registerUser(user);
+
+					if (f) {
+						session.setAttribute("register", "User hasbeen Register");
+						response.sendRedirect("/project1/login");
+
+					} else {
+						session.setAttribute("userexist", "Username already exist");
+						response.sendRedirect("/project1/register");
+					}
 
 				} else {
-					session.setAttribute("userexist", "Username already exist");
+					session.setAttribute("password_no_match", "password and confirmpassword not match");
 					response.sendRedirect("/project1/register");
 				}
-
 			} else {
-				session.setAttribute("password_no_match", "password and confirmpassword not match");
+				session.setAttribute("required", "All fields are required");
 				response.sendRedirect("/project1/register");
 			}
-		} else {
-			session.setAttribute("required", "All fields are required");
-			response.sendRedirect("/project1/register");
+		} catch (NumberFormatException e) {
+			throw new NumberFormatException();
 		}
 
 	}

@@ -12,15 +12,14 @@ List<Vacation> vac = (List<Vacation>) request.getAttribute("list");
 if (vac.isEmpty()) {
 	HttpSession session2 = request.getSession();
 	session2.setAttribute("not_found", "Not found!");
-	response.sendRedirect("/project1/error");
-	
-	response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+	response.sendRedirect("/project1/error");	
 } 
 %>
 
-<%
-User user2 = (User) session.getAttribute("userDetails");
-%>
+<% response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate"); %>
+
+<% User user2 = (User) session.getAttribute("userDetails");%>
+
 <!DOCTYPE html>
 <html>
 <head>

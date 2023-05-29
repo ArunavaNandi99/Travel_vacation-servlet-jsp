@@ -20,14 +20,15 @@ public class UserDAO {
 		boolean f = false;
 
 		try {
-			String sql = "insert into user(username,fname,lname,email,password) values(?,?,?,?,?)";
+			String sql = "insert into user(username,fname,lname,phone,email,password) values(?,?,?,?,?,?)";
 			PreparedStatement ps = con.prepareStatement(sql);
 
 			ps.setString(1, user.getUsername());
 			ps.setString(2, user.getFname());
 			ps.setString(3, user.getLname());
-			ps.setString(4, user.getEmail());
-			ps.setString(5, user.getPassword());
+			ps.setLong(4, user.getPhoneNumber());
+			ps.setString(5, user.getEmail());
+			ps.setString(6, user.getPassword());
 
 			int i = ps.executeUpdate();
 
@@ -63,6 +64,7 @@ public class UserDAO {
 				user2.setUsername(rs.getString("username"));
 				user2.setFname(rs.getString("fname"));
 				user2.setLname(rs.getString("lname"));
+				user2.setPhoneNumber(rs.getLong("phone"));
 				user2.setEmail(rs.getString("email"));
 			}
 

@@ -16,6 +16,7 @@ if ((request.getSession(false).getAttribute("userDetails") == null)) {
 }
 %>
 
+<% response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate"); %>
 
 <!-- logout -->
 
@@ -40,9 +41,6 @@ ArrayList<Cart> cart_list = (ArrayList<Cart>) session.getAttribute("cartList");
 CartDao cDao = new CartDao(DBConnection.getConnection());
 Integer total =  cDao.getTotalCartPrice(cart_list);
 request.setAttribute("total", total);
-
-response.setHeader("Cache-Control", "no-cache ,no-store, must-revalidate");
-
 %>
 
 

@@ -2,7 +2,6 @@ package com.project1.controller;
 
 import java.io.IOException;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -39,8 +38,10 @@ public class loginServlet extends HttpServlet {
 			session.setMaxInactiveInterval(10 * 60);
 			session.setAttribute("user", username);
 			
-			RequestDispatcher dispatcher  = request.getRequestDispatcher("/welcome");
-			dispatcher.forward(request, response);
+			response.sendRedirect("/project1/welcome");
+			
+//			RequestDispatcher dispatcher  = request.getRequestDispatcher("/welcome");
+//			dispatcher.forward(request, response);
 		}else {
 			session.setAttribute("loginFailed", "invalid username and password");
 			

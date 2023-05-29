@@ -12,10 +12,10 @@
 VacationDAO vacationDAO = new VacationDAO(DBConnection.getConnection());
 List<Vacation> vacations = vacationDAO.allVacation();
 request.setAttribute("vacationList", vacations);
-
-response.setHeader("Cache-Control", "no-cache ,no-store, must-revalidate");
-
 %>
+
+<% response.setHeader("Cache-Control", "no-cache ,no-store, must-revalidate"); %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -24,9 +24,8 @@ response.setHeader("Cache-Control", "no-cache ,no-store, must-revalidate");
 <title>Travel Vacation</title>
 </head>
 <body>
-	<%@ include file="all_component/navbar.jsp"%>
 
-	
+	<%@ include file="all_component/navbar.jsp"%>
 
 	<table class="table text-center" >
 	
@@ -55,14 +54,7 @@ response.setHeader("Cache-Control", "no-cache ,no-store, must-revalidate");
 				<td><img src="images\HOTEL.png" height="100"></td>
 				<td>Kolkata</td>
 				<td><a href="locationServlet?city=kolkata">Details</a></td>
-			</tr>
-
-		
-		
-		
+			</tr>	
 	</table>
-	
-	
-	
 </body>
 </html>

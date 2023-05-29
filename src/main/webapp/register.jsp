@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+	
+<% response.setHeader("Cache-Control", "no-cache,no-store,must-revalidate"); %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,7 +20,7 @@
 						<i class="fa fa-user-plus" aria-hidden="true"></i>
 						<h4>Registration</h4>
 					</div>
-					<!-- password and confirmpassword not match -->
+					<!-- Password and ConfirmPassword not match -->
 					<%
 					String pass = (String) session.getAttribute("password_no_match");
 
@@ -29,10 +32,9 @@
 					session.removeAttribute("password_no_match");
 					}
 					
-					response.setHeader("Cache-Control", "no-cache ,no-store,must-revalidate");
 					%>
 
-					<!-- useralreadyexist -->
+					<!-- userAlreadyExist -->
 
 					<%
 					String userexist = (String) session.getAttribute("userexist");
@@ -72,6 +74,9 @@
 							<div class="form-group text-center">
 								LastName<input type="text" name="lname"><br />
 							</div>
+							<div class="form-group text-center">s
+								PhoneNumber<input type="number" name="phoneNumber"><br />
+							</div>
 							<div class="form-group text-center">
 								Email<input type="email" name="email"><br />
 							</div>
@@ -88,14 +93,9 @@
 						</form>
 						<b >Already Register?<a href="/project1/login">Login</a></b>
 					</div>
-
-
 				</div>
-
 			</div>
-
 		</div>
-
 	</div>
 	<br />
 

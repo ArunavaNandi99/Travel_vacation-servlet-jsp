@@ -3,7 +3,6 @@ package com.project1.controller;
 import java.io.IOException;
 import java.io.Serial;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -22,13 +21,16 @@ public class logoutServlet extends HttpServlet {
 
 			HttpSession session = request.getSession();
 			session.removeAttribute("userDetails");
+			session.invalidate();
 
 			HttpSession session2 = request.getSession();
 			session2.setAttribute("logoutMsg", "Logout Successfully");
+			
 
-			//response.sendRedirect("");
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/login");
-			dispatcher.forward(request, response);
+			response.sendRedirect("/project1/welcome");
+			
+//			RequestDispatcher dispatcher = request.getRequestDispatcher("");
+//			dispatcher.forward(request, response);
 		
 
 		} catch (Exception e) {

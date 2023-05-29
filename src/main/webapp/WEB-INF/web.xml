@@ -39,7 +39,7 @@
 		<servlet-name>error</servlet-name>
 		<url-pattern>/error</url-pattern>
 	</servlet-mapping>
-	
+
 	<servlet>
 		<servlet-name>listOfVacation</servlet-name>
 		<jsp-file>/listOfVacation.jsp</jsp-file>
@@ -48,9 +48,7 @@
 		<servlet-name>listOfVacation</servlet-name>
 		<url-pattern>/vacation</url-pattern>
 	</servlet-mapping>
-	
-	
-	
+
  	<servlet>
 		<servlet-name>welcome</servlet-name>
 		<jsp-file>/welcome.jsp</jsp-file>
@@ -58,11 +56,10 @@
 	<servlet-mapping>
 		<servlet-name>welcome</servlet-name>
 		<url-pattern>/welcome</url-pattern>
-	</servlet-mapping> 
+	</servlet-mapping>
 
 
 	<welcome-file-list>
 		<welcome-file>welcome.jsp</welcome-file>
-
 	</welcome-file-list>
 </web-app>

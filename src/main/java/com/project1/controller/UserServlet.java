@@ -1,7 +1,10 @@
 package com.project1.controller;
 
-import java.io.IOException;
-import java.io.Serial;
+import com.project1.DAO.UserDAO;
+import com.project1.db.DBConnection;
+import com.project1.entity.User;
+import com.project1.service.VoltageService;
+import com.project1.service.VoltageServiceImpl;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,18 +12,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
-import com.project1.DAO.UserDAO;
-import com.project1.db.DBConnection;
-import com.project1.entity.User;
+import java.io.IOException;
+import java.io.Serial;
 
 @WebServlet("/UserServlet")
 public class UserServlet extends HttpServlet {
 	@Serial
 	private static final long serialVersionUID = 1L;
 
+	VoltageService voltageService = new VoltageServiceImpl();
+
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+
+
 
 		try {
 
@@ -41,14 +46,14 @@ public class UserServlet extends HttpServlet {
 
 				if (password.equals(confirmpassword)) {
 
-					Long phone = Long.parseLong(phoneNumber);
-
 					User user = new User();
 
 					user.setUsername(username);
 					user.setFname(fname);
 					user.setLname(lname);
-					user.setPhoneNumber(phone);
+//					user.setPhoneNumber(phoneNumber);
+					// encrypt phoneNumber
+					encrypt(user.setPhoneNumber(phoneNumber));
 					user.setEmail(email);
 					user.setPassword(password);
 
@@ -74,8 +79,17 @@ public class UserServlet extends HttpServlet {
 			}
 		} catch (NumberFormatException e) {
 			throw new NumberFormatException();
+		} catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 
 	}
+
+	private  String encrypt (String actualPhoneNumber) throws Exception {
+		String []  actualPhoneNumberList = new String[1];
+		actualPhoneNumberList[0] = actualPhoneNumber;
+		return voltageService.postData(actualPhoneNumberList);
+	}
+
 
 }

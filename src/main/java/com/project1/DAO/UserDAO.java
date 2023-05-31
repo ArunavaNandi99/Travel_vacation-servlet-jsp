@@ -26,7 +26,7 @@ public class UserDAO {
 			ps.setString(1, user.getUsername());
 			ps.setString(2, user.getFname());
 			ps.setString(3, user.getLname());
-			ps.setLong(4, user.getPhoneNumber());
+			ps.setString(4, user.getPhoneNumber());
 			ps.setString(5, user.getEmail());
 			ps.setString(6, user.getPassword());
 
@@ -64,7 +64,7 @@ public class UserDAO {
 				user2.setUsername(rs.getString("username"));
 				user2.setFname(rs.getString("fname"));
 				user2.setLname(rs.getString("lname"));
-				user2.setPhoneNumber(rs.getLong("phone"));
+				user2.setPhoneNumber(rs.getString("phone"));
 				user2.setEmail(rs.getString("email"));
 			}
 

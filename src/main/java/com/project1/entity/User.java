@@ -7,17 +7,14 @@ public class User {
 	private String username;
 	private String fname;
 	private String lname;
-	private Long phoneNumber;
+	private String phoneNumber;
 	private String email;
 	private String password;
 
 	public User() {
-
 	}
 
-	public User(int id, String username, String fname, String lname, Long phoneNumber, String email,
-			String password) {
-		super();
+	public User(int id, String username, String fname, String lname, String phoneNumber, String email, String password) {
 		this.id = id;
 		this.username = username;
 		this.fname = fname;
@@ -26,7 +23,6 @@ public class User {
 		this.email = email;
 		this.password = password;
 	}
-
 
 	public int getId() {
 		return id;
@@ -60,6 +56,15 @@ public class User {
 		this.lname = lname;
 	}
 
+	public String getPhoneNumber() {
+		return phoneNumber;
+	}
+
+	public String setPhoneNumber(String phoneNumber) {
+		this.phoneNumber = phoneNumber;
+		return phoneNumber;
+	}
+
 	public String getEmail() {
 		return email;
 	}
@@ -67,15 +72,6 @@ public class User {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	
-	public Long getPhoneNumber() {
-		return phoneNumber;
-	}
-
-	public void setPhoneNumber(Long phoneNumber) {
-		this.phoneNumber = phoneNumber;
-	}
-
 
 	public String getPassword() {
 		return password;
@@ -87,9 +83,14 @@ public class User {
 
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", username=" + username + ", fname=" + fname + ", lname=" + lname + ", phoneNumber="
-				+ phoneNumber + ", email=" + email + ", password=" + password + "]";
+		return "User{" +
+				"id=" + id +
+				", username='" + username + '\'' +
+				", fname='" + fname + '\'' +
+				", lname='" + lname + '\'' +
+				", phoneNumber='" + phoneNumber + '\'' +
+				", email='" + email + '\'' +
+				", password='" + password + '\'' +
+				'}';
 	}
-	
-	
 }

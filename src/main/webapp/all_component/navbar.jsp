@@ -96,6 +96,10 @@
 
 							</table>
 							<div>
+							<a class="button" href="/project1/profile.jsp">View Details</a>
+							<div>
+
+							<div>
 								<button type="button" class="btn btn-secondary"
 									data-dismiss="modal">Close</button>
 

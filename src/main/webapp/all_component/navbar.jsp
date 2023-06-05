@@ -96,7 +96,7 @@
 
 							</table>
 							<div>
-							<a class="button" href="/project1/profile.jsp">View Details</a>
+							<a class="btn btn-primary " href="/project1/profile">View Details</a>
 							<div>
 
 							<div>

@@ -58,6 +58,24 @@
 		<url-pattern>/welcome</url-pattern>
 	</servlet-mapping>
 
+	<servlet>
+		<servlet-name>profile</servlet-name>
+		<jsp-file>/profile.jsp</jsp-file>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>profile</servlet-name>
+		<url-pattern>/profile</url-pattern>
+	</servlet-mapping>
+
+
+	<servlet>
+		<servlet-name>showData</servlet-name>
+		<jsp-file>/showOriginalNumber.jsp</jsp-file>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>showData</servlet-name>
+		<url-pattern>/showData</url-pattern>
+	</servlet-mapping>
 
 	<welcome-file-list>
 		<welcome-file>welcome.jsp</welcome-file>

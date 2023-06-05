@@ -1,3 +1,6 @@
+<!-- ShowError -->
+<%@ page errorPage = "errorPage.jsp" %>
+
 <%@page import="com.project1.DAO.CartDao"%>
 <%@page import="com.project1.entity.*"%>
 <%@page import="com.project1.entity.Vacation"%>

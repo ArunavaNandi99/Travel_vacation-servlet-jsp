@@ -1,3 +1,7 @@
+<!-- ShowError -->
+<%@ page errorPage = "errorPage.jsp" %>
+
+
 <%@page import="com.project1.entity.Vacation"%>
 <%@page import="java.util.List"%>
 <%@page import="com.project1.entity.*"%>
@@ -74,11 +78,6 @@ if (vac.isEmpty()) {
 				%>
 			</tr>
 		</c:forEach>
-
 	</table>
-
-
-
-
-</body>
+   </body>
 </html>

@@ -1,3 +1,6 @@
+<!-- ShowError -->
+<%@ page errorPage = "errorPage.jsp" %>
+
 <%@page import="com.project1.DAO.CartDao"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="com.project1.db.DBConnection"%>
@@ -36,6 +39,7 @@ if (cart != null) {
 	session2.setAttribute("cartList", cart);
 }
 %>
+
 <%
 ArrayList<Cart> cart_list = (ArrayList<Cart>) session.getAttribute("cartList");
 CartDao cDao = new CartDao(DBConnection.getConnection());
@@ -90,20 +94,11 @@ request.setAttribute("total", total);
 				<td><%=c.getType()%></td>
 				<td><%=c.getPrice()%></td>
 				<td><a href="removeFormCart?id=<%=c.getCid()%>">Remove</a></td>
-
 			</tr>
 			<%
 			}
 			%>
-
-			
-
 		</tbody>
-
-
-
-
 	</table>
-
 </body>
 </html>

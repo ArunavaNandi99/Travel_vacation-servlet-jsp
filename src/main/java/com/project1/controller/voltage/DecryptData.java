@@ -3,7 +3,6 @@ package com.project1.controller.voltage;
 import com.project1.service.VoltageService;
 import com.project1.service.VoltageServiceImpl;
 
-import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
